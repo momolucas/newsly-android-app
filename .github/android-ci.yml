@@ -1,0 +1,39 @@
+name: 👽️ Android CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    name: 🚧 Build Project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: "17"
+          cache: gradle
+
+      - name: 🔓 Give execute permission to gradlew
+        run: chmod +x gradlew
+
+      - name: 📦 Set up Gradle
+        uses: gradle/gradle-build-action@v3
+
+      - name: 🧹 Clean project
+        run: ./gradlew clean
+
+      - name: 🏗️ Build the Project (APKs)
+        run: ./gradlew assemble
