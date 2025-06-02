@@ -15,6 +15,9 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import lucas.momo.newsly.data.BuildConfig.API_KEY
+import lucas.momo.newsly.data.communs.ApiConstants.ApiHeaders.API_KEY_HEADER
+import lucas.momo.newsly.data.communs.ApiConstants.BASE_URL
 import lucas.momo.newsly.data.remote.apis.NewsApi
 import javax.inject.Singleton
 
@@ -27,7 +30,8 @@ object NetworkModule {
     fun provideHttpClient(): HttpClient {
         return HttpClient(Android) {
             install(DefaultRequest) {
-                header("x-api-key", "5561215cd06d4cc5a118d608827c339e")
+                url(BASE_URL)
+                header(API_KEY_HEADER, API_KEY)
             }
             install(ContentNegotiation) {
                 json(Json {
@@ -38,10 +42,8 @@ object NetworkModule {
             }
             install(Logging) {
                 logger = object : Logger {
-                    private val KTOR_LOG_TAG = "Ktor Newsly"
-
                     override fun log(message: String) {
-                        Log.d(KTOR_LOG_TAG, message)
+                        Log.d("Ktor Newsly", message)
                     }
                 }
                 level = LogLevel.ALL
@@ -54,5 +56,4 @@ object NetworkModule {
     fun provideNewsApi(httpClient: HttpClient, @SourceParam sourceParam: String): NewsApi {
         return NewsApi(httpClient, sourceParam)
     }
-
 }

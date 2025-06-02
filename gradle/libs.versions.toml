@@ -9,17 +9,18 @@ versionName = "1.0.0-alpha"
 
 # Dependencies version
 agp = "8.10.1"
-kotlin = "2.1.10"
+kotlin = "2.1.20"
 coreKtx = "1.15.0"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.10.1"
 composeBom = "2024.09.00"
-coroutines = "1.8.0"
-ktor = "2.3.11"
+coroutines = "1.7.3"
+ktor = "3.1.3"
 kotlinxSerialization = "1.6.3"
 hilt = "2.51.1"
 hiltNavigationCompose = "1.2.0"
 javaxInject = "1"
+coil = "3.2.0"
 
 # Test Dependencies version
 mockk = "1.13.10"
@@ -55,10 +56,15 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.r
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
 # Ktor dependencies
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-client-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# Coil dependencies
+coil-okhttp3 = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 
 # Test dependencies
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }

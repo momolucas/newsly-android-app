@@ -2,6 +2,7 @@ package lucas.momo.newsly.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import coil3.ImageLoader
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,6 +28,7 @@ internal class TopHeadlinesViewModel
     @Inject
     constructor(
         private val fetchTopHeadlinesUseCase: FetchTopHeadlinesUseCase,
+        val coilImageLoader: ImageLoader,
     ) : ViewModel() {
         private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
         val uiState: StateFlow<UiState> = _uiState.asStateFlow()
