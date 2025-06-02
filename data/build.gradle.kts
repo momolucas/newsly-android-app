@@ -1,23 +1,19 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.ktlint)
-    alias(libs.plugins.detekt)
 }
 
 android {
-    namespace = "lucas.momo.newsly"
+    namespace = "lucas.momo.newsly.data"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "lucas.momo.newsly"
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = libs.versions.versionCode.get().toInt()
-        versionName = libs.versions.versionName.get()
+
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -25,7 +21,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
+                "proguard-rules.pro"
             )
         }
     }
@@ -35,9 +31,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = libs.versions.jvmTarget.get()
-    }
-    buildFeatures {
-        compose = true
     }
     sourceSets {
         getByName("main") {
@@ -52,6 +45,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 configurations.all {
     resolutionStrategy.eachDependency {
         if (requested.group == "io.ktor" && requested.name == "ktor-utils-jvm") {
@@ -61,35 +58,23 @@ configurations.all {
 }
 
 dependencies {
-    // Compose dependencies
-    implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.ui.graphics)
-    implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.material3)
-
     // Androidx dependencies
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
+
+    // Kotlinx dependencies
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
+
+    // Ktor dependencies
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.client.serialization)
+    implementation(libs.ktor.client.logging)
 
     // Hilt dependencies
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
-
-    // Test dependencies
-    androidTestImplementation(platform(libs.compose.bom))
-    debugImplementation(libs.compose.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.mockk.android.test)
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.junit4)
-    testImplementation(libs.mockk.test)
 
     // Project dependencies
-    implementation(project(":data"))
     implementation(project(":domain"))
 }
