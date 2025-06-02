@@ -1,6 +1,5 @@
 package lucas.momo.newsly.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +19,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil3.ImageLoader
+import coil3.compose.AsyncImage
 import lucas.momo.newsly.R
 import lucas.momo.newsly.models.ArticleUiModel
 
@@ -28,6 +29,7 @@ fun TopHeadlineItem(
     article: ArticleUiModel,
     isLastItem: Boolean,
     isFirstItem: Boolean,
+    coilImageLoader: ImageLoader,
 ) {
     val cornerShape =
         if (isFirstItem) {
@@ -46,9 +48,12 @@ fun TopHeadlineItem(
                         .clickable(onClick = { })
                         .padding(12.dp),
             ) {
-                Image(
-                    painter = painterResource(R.drawable.article_placeholder),
-                    contentDescription = article.title,
+                AsyncImage(
+                    model = article.image,
+                    imageLoader = coilImageLoader,
+                    placeholder = painterResource(R.drawable.article_placeholder),
+                    error = painterResource(R.drawable.article_placeholder),
+                    contentDescription = "Image of ${article.title}",
                     contentScale = ContentScale.Crop,
                     modifier =
                         Modifier

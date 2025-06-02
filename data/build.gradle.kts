@@ -10,8 +10,20 @@ android {
     namespace = "lucas.momo.newsly.data"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+
+        /**
+         * NOTE: I'm placing the API key directly in the Gradle config for simplicity,
+         * so anyone cloning the project can run it without needing to configure anything.
+         * In a real production scenario, the API key should be placed in a local
+         * gradle.properties file or injected securely via secrets management / remote api.
+         * **/
+        buildConfigField("String", "API_KEY", "\"5561215cd06d4cc5a118d608827c339e\"")
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -49,14 +61,6 @@ kapt {
     correctErrorTypes = true
 }
 
-configurations.all {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "io.ktor" && requested.name == "ktor-utils-jvm") {
-            useTarget("io.ktor:ktor-utils:${requested.version}")
-        }
-    }
-}
-
 dependencies {
     // Androidx dependencies
     implementation(libs.androidx.core.ktx)
@@ -66,10 +70,19 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // Ktor dependencies
-    implementation(libs.ktor.client.android)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.client.serialization)
-    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.android) {
+        exclude(group = "io.ktor", module = "ktor-utils-jvm")
+    }
+    implementation(libs.ktor.client.logging) {
+        exclude(group = "io.ktor", module = "ktor-utils-jvm")
+    }
+    implementation(libs.ktor.client.core) {
+        exclude(group = "io.ktor", module = "ktor-utils-jvm")
+    }
+    implementation(libs.ktor.client.content.negotiation) {
+        exclude(group = "io.ktor", module = "ktor-utils-jvm")
+    }
 
     // Hilt dependencies
     kapt(libs.hilt.compiler)

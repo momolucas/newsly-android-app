@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import lucas.momo.newsly.models.ArticleUiModel
+import coil3.ImageLoader
 import lucas.momo.newsly.models.TopHeadlinesUiModel
 import lucas.momo.newsly.ui.components.HeaderTitle
 import lucas.momo.newsly.ui.components.TopHeadlineItem
@@ -40,12 +40,19 @@ internal fun TopHeadlinesScreen(viewModel: TopHeadlinesViewModel = hiltViewModel
     when (uiState.value) {
         is UiState.Loading -> TopHeadlinesLoading()
         is UiState.Error -> {}
-        is UiState.Success -> TopHeadlines((uiState.value as UiState.Success).data)
+        is UiState.Success ->
+            TopHeadlines(
+                (uiState.value as UiState.Success).data,
+                viewModel.coilImageLoader,
+            )
     }
 }
 
 @Composable
-fun TopHeadlines(data: TopHeadlinesUiModel) {
+fun TopHeadlines(
+    data: TopHeadlinesUiModel,
+    coilImageLoader: ImageLoader,
+) {
     val configuration = LocalConfiguration.current
     val isLandscape =
         configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
@@ -81,6 +88,7 @@ fun TopHeadlines(data: TopHeadlinesUiModel) {
                 article = article,
                 isLastItem = data.articles.last() == article,
                 isFirstItem = data.articles.first() == article,
+                coilImageLoader = coilImageLoader,
             )
         }
         item { Spacer(Modifier.padding(WindowInsets.systemBars.asPaddingValues())) }
@@ -110,26 +118,4 @@ fun TopHeadlinesLoading() {
 @Composable
 fun TopHeadlinesLoadingPreview() {
     TopHeadlinesLoading()
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TopHeadlinesPreview() {
-    TopHeadlines(
-        TopHeadlinesUiModel(
-            sourceTitle = "Preview Source Title",
-            articles =
-                listOf(
-                    ArticleUiModel(
-                        "Example",
-                        "Example",
-                        "Example",
-                        "Example",
-                        "Example",
-                        "Example",
-                        "Example",
-                    ),
-                ),
-        ),
-    )
 }

@@ -52,14 +52,6 @@ android {
     }
 }
 
-configurations.all {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "io.ktor" && requested.name == "ktor-utils-jvm") {
-            useTarget("io.ktor:ktor-utils:${requested.version}")
-        }
-    }
-}
-
 dependencies {
     // Compose dependencies
     implementation(platform(libs.compose.bom))
@@ -77,6 +69,10 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+
+    // Coil dependencies
+    implementation(libs.coil.compose)
+    implementation(libs.coil.okhttp3)
 
     // Test dependencies
     androidTestImplementation(platform(libs.compose.bom))
