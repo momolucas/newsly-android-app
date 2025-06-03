@@ -70,19 +70,11 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // Ktor dependencies
-    implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.ktor.client.android) {
-        exclude(group = "io.ktor", module = "ktor-utils-jvm")
-    }
-    implementation(libs.ktor.client.logging) {
-        exclude(group = "io.ktor", module = "ktor-utils-jvm")
-    }
-    implementation(libs.ktor.client.core) {
-        exclude(group = "io.ktor", module = "ktor-utils-jvm")
-    }
-    implementation(libs.ktor.client.content.negotiation) {
-        exclude(group = "io.ktor", module = "ktor-utils-jvm")
-    }
+    implementation(libs.ktor.serialization.kotlinx)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.content.negotiation)
 
     // Hilt dependencies
     kapt(libs.hilt.compiler)

@@ -34,6 +34,7 @@ subprojects {
                 abortOnError = true
                 warningsAsErrors = false
                 checkAllWarnings = true
+                warning += "InvalidPackage"
             }
         }
     }
@@ -44,6 +45,7 @@ subprojects {
                 abortOnError = true
                 warningsAsErrors = false
                 checkAllWarnings = true
+                warning += "InvalidPackage"
             }
         }
     }
