@@ -1,24 +1,18 @@
 package lucas.momo.newsly.mappers
 
+import lucas.momo.newsly.communs.decodeHtml
+import lucas.momo.newsly.communs.toDateTimeFormat
 import lucas.momo.newsly.domain.entities.Article
 import lucas.momo.newsly.models.ArticleUiModel
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 fun Article.toArticleUiModel(): ArticleUiModel {
-    val formatter =
-        DateTimeFormatter
-            .ofPattern("MM/dd/yyyy 'at' HH:mm", Locale.getDefault())
-            .withZone(ZoneId.systemDefault())
-
     return ArticleUiModel(
-        title = title,
-        subtitle = description,
-        publishedAt = formatter.format(instantPublish),
-        content = content,
+        title = title.decodeHtml(),
+        subtitle = description.decodeHtml(),
+        publishedAt = instantPublish.toDateTimeFormat(),
+        content = content.decodeHtml(),
         image = urlToImage,
-        author = author,
+        author = author.decodeHtml(),
         link = url,
     )
 }

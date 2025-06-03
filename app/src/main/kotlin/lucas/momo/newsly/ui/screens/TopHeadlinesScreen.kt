@@ -1,5 +1,6 @@
 package lucas.momo.newsly.ui.screens
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,11 +23,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.ImageLoader
+import lucas.momo.newsly.R
 import lucas.momo.newsly.models.ArticleUiModel
 import lucas.momo.newsly.models.TopHeadlinesUiModel
 import lucas.momo.newsly.ui.components.HeaderTitle
@@ -43,7 +46,18 @@ internal fun TopHeadlinesScreen(
 
     when (uiState.value) {
         is UiState.Loading -> TopHeadlinesLoading()
-        is UiState.Error -> {}
+
+        is UiState.Error ->
+            ErrorScreen(
+                message = stringResource(R.string.error_message_top_headlines_screen),
+                buttonLabel = stringResource(R.string.try_again),
+                onButtonClick = { viewModel.fetchTopHeadlines() },
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.background),
+            )
+
         is UiState.Success ->
             TopHeadlines(
                 (uiState.value as UiState.Success).data,
@@ -61,7 +75,7 @@ fun TopHeadlines(
 ) {
     val configuration = LocalConfiguration.current
     val isLandscape =
-        configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     val paddingLanderScape =
         if (isLandscape) {
             val paddingSystem = WindowInsets.systemBars.asPaddingValues()
