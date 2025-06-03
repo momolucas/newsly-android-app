@@ -1,4 +1,4 @@
-package lucas.momo.newsly.ui
+package lucas.momo.newsly.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.ImageLoader
+import lucas.momo.newsly.models.ArticleUiModel
 import lucas.momo.newsly.models.TopHeadlinesUiModel
 import lucas.momo.newsly.ui.components.HeaderTitle
 import lucas.momo.newsly.ui.components.TopHeadlineItem
@@ -34,7 +35,10 @@ import lucas.momo.newsly.viewmodels.TopHeadlinesViewModel
 import lucas.momo.newsly.viewmodels.UiState
 
 @Composable
-internal fun TopHeadlinesScreen(viewModel: TopHeadlinesViewModel = hiltViewModel()) {
+internal fun TopHeadlinesScreen(
+    viewModel: TopHeadlinesViewModel = hiltViewModel(),
+    onArticleClick: (ArticleUiModel) -> Unit,
+) {
     val uiState = viewModel.uiState.collectAsState()
 
     when (uiState.value) {
@@ -44,6 +48,7 @@ internal fun TopHeadlinesScreen(viewModel: TopHeadlinesViewModel = hiltViewModel
             TopHeadlines(
                 (uiState.value as UiState.Success).data,
                 viewModel.coilImageLoader,
+                onArticleClick,
             )
     }
 }
@@ -52,6 +57,7 @@ internal fun TopHeadlinesScreen(viewModel: TopHeadlinesViewModel = hiltViewModel
 fun TopHeadlines(
     data: TopHeadlinesUiModel,
     coilImageLoader: ImageLoader,
+    onArticleClick: (ArticleUiModel) -> Unit,
 ) {
     val configuration = LocalConfiguration.current
     val isLandscape =
@@ -89,6 +95,7 @@ fun TopHeadlines(
                 isLastItem = data.articles.last() == article,
                 isFirstItem = data.articles.first() == article,
                 coilImageLoader = coilImageLoader,
+                onClick = onArticleClick,
             )
         }
         item { Spacer(Modifier.padding(WindowInsets.systemBars.asPaddingValues())) }

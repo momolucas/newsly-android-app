@@ -30,6 +30,7 @@ fun TopHeadlineItem(
     isLastItem: Boolean,
     isFirstItem: Boolean,
     coilImageLoader: ImageLoader,
+    onClick: (ArticleUiModel) -> Unit,
 ) {
     val cornerShape =
         if (isFirstItem) {
@@ -45,7 +46,7 @@ fun TopHeadlineItem(
                 modifier =
                     Modifier
                         .wrapContentHeight()
-                        .clickable(onClick = { })
+                        .clickable(onClick = { onClick(article) })
                         .padding(12.dp),
             ) {
                 AsyncImage(
