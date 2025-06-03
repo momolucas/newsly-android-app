@@ -37,7 +37,7 @@ internal class TopHeadlinesViewModel
             fetchTopHeadlines()
         }
 
-        private fun fetchTopHeadlines() {
+        fun fetchTopHeadlines() {
             viewModelScope.launch {
                 fetchTopHeadlinesUseCase()
                     .onStart {

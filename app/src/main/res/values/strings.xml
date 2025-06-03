@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Newsly</string>
+    <string name="back">Back</string>
+    <string name="read_more">Read more</string>
+    <string name="error_icon">Error Icon</string>
+    <string name="error_message_top_headlines_screen">Something went wrong. Please try again.</string>
+    <string name="error_message_read_article_screen">Unable to load the file. Please try again later.</string>
+    <string name="back_to_headlines">Back to headlines</string>
+    <string name="try_again">Try Again</string>
 </resources>
