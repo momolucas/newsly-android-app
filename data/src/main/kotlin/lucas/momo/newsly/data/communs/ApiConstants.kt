@@ -1,6 +1,6 @@
 package lucas.momo.newsly.data.communs
 
-object ApiConstants {
+internal object ApiConstants {
     const val BASE_URL = "https://newsapi.org/v2/"
 
     object ApiHeaders {

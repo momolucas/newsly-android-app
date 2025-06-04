@@ -5,7 +5,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
@@ -18,18 +17,25 @@ import androidx.core.net.toUri
 import lucas.momo.newsly.R
 
 @Composable
-fun TextWithLink(
+internal fun TextWithLink(
     content: String,
     url: String,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val clickableText = stringResource(R.string.read_more)
+
     val cleanContent =
         content
             .replace(Regex("""\s*\[\+\d+\s+chars]$"""), "").trim()
+
     val finalText = "$cleanContent $clickableText"
-    val linkStyle = SpanStyle(color = Color.Blue, textDecoration = TextDecoration.Underline)
+
+    val linkStyle =
+        SpanStyle(
+            color = MaterialTheme.colorScheme.surfaceBright,
+            textDecoration = TextDecoration.Underline,
+        )
 
     val annotatedString =
         buildAnnotatedString {

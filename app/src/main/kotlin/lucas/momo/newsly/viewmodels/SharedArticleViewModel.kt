@@ -9,7 +9,7 @@ import lucas.momo.newsly.models.ArticleUiModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SharedArticleViewModel
+internal class SharedArticleViewModel
     @Inject
     constructor(val coilImageLoader: ImageLoader) : ViewModel() {
         private val _article = MutableStateFlow<ArticleUiModel?>(null)
@@ -17,9 +17,5 @@ class SharedArticleViewModel
 
         fun setArticle(article: ArticleUiModel) {
             _article.value = article
-        }
-
-        fun clearArticle() {
-            _article.value = null
         }
     }

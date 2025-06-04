@@ -8,7 +8,7 @@ import javax.inject.Qualifier
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ParamsModule {
+internal object ParamsModule {
     @Provides
     @SourceParam
     fun provideSourceParam(): String = "bbc-news"

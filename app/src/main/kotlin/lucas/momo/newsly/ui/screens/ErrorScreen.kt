@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import lucas.momo.newsly.R
 
 @Composable
-fun ErrorScreen(
+internal fun ErrorScreen(
     message: String,
     buttonLabel: String,
     onButtonClick: () -> Unit,

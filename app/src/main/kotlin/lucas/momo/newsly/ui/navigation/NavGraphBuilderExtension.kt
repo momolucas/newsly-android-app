@@ -10,7 +10,7 @@ import lucas.momo.newsly.ui.screens.ArticleReadScreen
 import lucas.momo.newsly.ui.screens.TopHeadlinesScreen
 import lucas.momo.newsly.viewmodels.SharedArticleViewModel
 
-fun NavGraphBuilder.newslyNavGraph(navController: NavHostController) {
+internal fun NavGraphBuilder.newslyNavGraph(navController: NavHostController) {
     navigation(startDestination = NewslyRoutes.TopHeadlines.route, route = NavGraphs.NEWSLY) {
         composable(NewslyRoutes.TopHeadlines.route) { backStackEntry ->
             val parentEntry =

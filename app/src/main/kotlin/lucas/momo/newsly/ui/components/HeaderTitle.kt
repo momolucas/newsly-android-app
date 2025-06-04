@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HeaderTitle(title: String) {
+internal fun HeaderTitle(title: String) {
     Box(
         contentAlignment = Alignment.Center,
         modifier =
