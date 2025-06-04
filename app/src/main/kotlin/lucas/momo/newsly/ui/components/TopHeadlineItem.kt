@@ -25,7 +25,7 @@ import lucas.momo.newsly.R
 import lucas.momo.newsly.models.ArticleUiModel
 
 @Composable
-fun TopHeadlineItem(
+internal fun TopHeadlineItem(
     article: ArticleUiModel,
     isLastItem: Boolean,
     isFirstItem: Boolean,
@@ -69,7 +69,7 @@ fun TopHeadlineItem(
                 ) {
                     Text(
                         text = article.title,
-                        style = MaterialTheme.typography.bodyLarge,
+                        style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis,

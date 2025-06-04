@@ -5,7 +5,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-fun Instant.toDateTimeFormat(): String {
+internal fun Instant.toDateTimeFormat(): String {
     val formatter =
         DateTimeFormatter
             .ofPattern("MM/dd/yyyy 'at' HH:mm", Locale.getDefault())

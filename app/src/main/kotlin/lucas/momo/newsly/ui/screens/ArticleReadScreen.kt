@@ -37,7 +37,7 @@ import lucas.momo.newsly.viewmodels.SharedArticleViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ArticleReadScreen(
+internal fun ArticleReadScreen(
     sharedArticleViewModel: SharedArticleViewModel = hiltViewModel(),
     upNavigation: () -> Unit,
 ) {
@@ -85,7 +85,7 @@ fun ArticleReadScreen(
 }
 
 @Composable
-fun ArticleRead(
+internal fun ArticleRead(
     article: ArticleUiModel,
     coilImageLoader: ImageLoader,
 ) {
@@ -98,6 +98,7 @@ fun ArticleRead(
                 .fillMaxWidth()
                 .padding(bottom = 4.dp),
     )
+
     Text(
         text = article.publishedAt,
         style = MaterialTheme.typography.bodyMedium,
@@ -107,6 +108,7 @@ fun ArticleRead(
                 .fillMaxWidth()
                 .padding(bottom = 2.dp),
     )
+
     Text(
         text = article.author,
         style = MaterialTheme.typography.bodyLarge,
@@ -117,6 +119,7 @@ fun ArticleRead(
                 .fillMaxWidth()
                 .padding(bottom = 24.dp),
     )
+
     AsyncImage(
         model = article.image,
         imageLoader = coilImageLoader,
@@ -131,6 +134,7 @@ fun ArticleRead(
                 .padding(bottom = 8.dp)
                 .clip(RoundedCornerShape(12.dp)),
     )
+
     Text(
         text = article.subtitle,
         style = MaterialTheme.typography.bodyMedium,
@@ -140,5 +144,6 @@ fun ArticleRead(
                 .fillMaxWidth()
                 .padding(bottom = 30.dp),
     )
+
     TextWithLink(article.content, article.link, modifier = Modifier.fillMaxWidth())
 }

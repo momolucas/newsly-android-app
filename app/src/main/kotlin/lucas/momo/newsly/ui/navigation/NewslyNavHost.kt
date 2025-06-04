@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 
 @Composable
-fun NewslyNavHost(navController: NavHostController) {
+internal fun NewslyNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = NavGraphs.NEWSLY,

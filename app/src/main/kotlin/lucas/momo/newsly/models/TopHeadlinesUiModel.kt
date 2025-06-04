@@ -1,11 +1,11 @@
 package lucas.momo.newsly.models
 
-data class TopHeadlinesUiModel(
+internal data class TopHeadlinesUiModel(
     val sourceTitle: String,
     val articles: List<ArticleUiModel>,
 )
 
-data class ArticleUiModel(
+internal data class ArticleUiModel(
     val title: String,
     val subtitle: String,
     val publishedAt: String,

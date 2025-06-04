@@ -5,15 +5,15 @@ import lucas.momo.newsly.domain.entities.Article
 import lucas.momo.newsly.domain.entities.Source
 import java.time.Instant
 
-fun ArticleDto.toArticle(): Article {
+internal fun ArticleDto.toArticle(): Article {
     return Article(
-        source = Source(id = source?.id ?: "", name = source?.name ?: ""),
-        author = author ?: "",
-        title = title ?: "",
-        description = description ?: "",
-        url = url ?: "",
-        urlToImage = urlToImage ?: "",
+        source = Source(id = source?.id.orEmpty(), name = source?.name.orEmpty()),
+        author = author.orEmpty(),
+        title = title.orEmpty(),
+        description = description.orEmpty(),
+        url = url.orEmpty(),
+        urlToImage = urlToImage.orEmpty(),
         instantPublish = Instant.parse(publishedAt),
-        content = content ?: ""
+        content = content.orEmpty()
     )
 }

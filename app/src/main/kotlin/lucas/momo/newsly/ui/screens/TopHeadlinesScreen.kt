@@ -68,14 +68,16 @@ internal fun TopHeadlinesScreen(
 }
 
 @Composable
-fun TopHeadlines(
+internal fun TopHeadlines(
     data: TopHeadlinesUiModel,
     coilImageLoader: ImageLoader,
     onArticleClick: (ArticleUiModel) -> Unit,
 ) {
     val configuration = LocalConfiguration.current
+
     val isLandscape =
         configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
     val paddingLanderScape =
         if (isLandscape) {
             val paddingSystem = WindowInsets.systemBars.asPaddingValues()
@@ -103,6 +105,7 @@ fun TopHeadlines(
             ),
     ) {
         item { HeaderTitle(data.sourceTitle) }
+
         items(data.articles) { article ->
             TopHeadlineItem(
                 article = article,
@@ -112,12 +115,13 @@ fun TopHeadlines(
                 onClick = onArticleClick,
             )
         }
+
         item { Spacer(Modifier.padding(WindowInsets.systemBars.asPaddingValues())) }
     }
 }
 
 @Composable
-fun TopHeadlinesLoading() {
+internal fun TopHeadlinesLoading() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,

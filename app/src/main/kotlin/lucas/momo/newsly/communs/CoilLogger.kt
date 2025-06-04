@@ -3,7 +3,7 @@ package lucas.momo.newsly.communs
 import android.util.Log
 import coil3.util.Logger
 
-class CoilLogger(
+internal class CoilLogger(
     override var minLevel: Logger.Level = Logger.Level.Info,
 ) : Logger {
     override fun log(
