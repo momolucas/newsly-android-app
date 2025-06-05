@@ -29,16 +29,21 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = libs.versions.jvmTarget.get()
     }
+
     buildFeatures {
         compose = true
+        buildConfig = true
     }
+
     sourceSets {
         getByName("main") {
             java.srcDirs("src/main/kotlin")
@@ -48,6 +53,24 @@ android {
         }
         getByName("androidTest") {
             java.srcDirs("src/androidTest/kotlin")
+        }
+    }
+
+    flavorDimensions += "newsly"
+
+    productFlavors {
+        create("bbcNews") {
+            dimension = "newsly"
+            applicationIdSuffix = ".bbc"
+            versionNameSuffix = "-bbc"
+            buildConfigField("String", "SOURCE_ID", "\"bbc-news\"")
+        }
+
+        create("washingtonPost") {
+            dimension = "newsly"
+            applicationIdSuffix = ".wp"
+            versionNameSuffix = "-wp"
+            buildConfigField("String", "SOURCE_ID", "\"the-washington-post\"")
         }
     }
 }

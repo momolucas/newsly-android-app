@@ -19,6 +19,7 @@ import lucas.momo.newsly.data.BuildConfig.API_KEY
 import lucas.momo.newsly.data.communs.ApiConstants.ApiHeaders.API_KEY_HEADER
 import lucas.momo.newsly.data.communs.ApiConstants.BASE_URL
 import lucas.momo.newsly.data.remote.apis.NewsApi
+import lucas.momo.newsly.domain.providers.BuildConfigProvider
 import javax.inject.Singleton
 
 @Module
@@ -53,7 +54,7 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNewsApi(httpClient: HttpClient, @SourceParam sourceParam: String): NewsApi {
-        return NewsApi(httpClient, sourceParam)
+    fun provideNewsApi(httpClient: HttpClient, buildConfigProvider: BuildConfigProvider): NewsApi {
+        return NewsApi(httpClient, buildConfigProvider)
     }
 }
