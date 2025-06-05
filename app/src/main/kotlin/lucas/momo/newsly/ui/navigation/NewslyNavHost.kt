@@ -8,8 +8,9 @@ import androidx.navigation.compose.NavHost
 internal fun NewslyNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = NavGraphs.NEWSLY,
+        startDestination = NavGraphs.AUTHENTICATION,
     ) {
-        newslyNavGraph(navController)
+        authenticationNavGraph(navController)
+        articlesNavGraph(navController)
     }
 }

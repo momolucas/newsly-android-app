@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import lucas.momo.newsly.data.mappers.toArticles
 import lucas.momo.newsly.data.remote.apis.NewsApi
-import lucas.momo.newsly.domain.entities.Article
+import lucas.momo.newsly.domain.models.entities.Article
 import lucas.momo.newsly.domain.repositories.TopHeadlinesRepository
 import javax.inject.Inject
 

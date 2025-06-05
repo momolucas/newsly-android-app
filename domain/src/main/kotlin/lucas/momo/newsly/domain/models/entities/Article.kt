@@ -1,4 +1,4 @@
-package lucas.momo.newsly.domain.entities
+package lucas.momo.newsly.domain.models.entities
 
 import java.time.Instant
 
