@@ -64,6 +64,7 @@ kapt {
 dependencies {
     // Androidx dependencies
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.biometric)
 
     // Kotlinx dependencies
     implementation(libs.kotlinx.coroutines.core)

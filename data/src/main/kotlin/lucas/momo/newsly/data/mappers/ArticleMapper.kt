@@ -1,8 +1,8 @@
 package lucas.momo.newsly.data.mappers
 
 import lucas.momo.newsly.data.remote.dtos.ArticleDto
-import lucas.momo.newsly.domain.entities.Article
-import lucas.momo.newsly.domain.entities.Source
+import lucas.momo.newsly.domain.models.entities.Article
+import lucas.momo.newsly.domain.models.entities.Source
 import java.time.Instant
 
 internal fun ArticleDto.toArticle(): Article {
