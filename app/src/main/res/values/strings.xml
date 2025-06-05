@@ -12,5 +12,5 @@
     <string name="biometric_not_available">Biometric sensor is not available right now. Try again in a few moments.</string>
     <string name="open_security_settings">Open Security Settings</string>
     <string name="unlock">Unlock</string>
-    <string name="biometric_sensor_not_detected">Biometric sensor not detected on this device. Redirecting to Top Headlines...</string>
+    <string name="biometric_sensor_not_detected">Biometric sensor not detected on this device. Redirecting to Top Headlines…</string>
 </resources>

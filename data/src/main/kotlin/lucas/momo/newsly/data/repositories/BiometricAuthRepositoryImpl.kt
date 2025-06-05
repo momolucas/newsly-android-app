@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.callbackFlow
 import lucas.momo.newsly.domain.models.BiometricAuthAvailability
 import lucas.momo.newsly.domain.models.BiometricAuthAvailability.AVAILABLE
 import lucas.momo.newsly.domain.models.BiometricAuthAvailability.NOT_SUPPORTED
-import lucas.momo.newsly.domain.models.BiometricAuthAvailability.UNAVAILABLE
 import lucas.momo.newsly.domain.models.BiometricAuthResult
 import lucas.momo.newsly.domain.repositories.BiometricAuthRepository
 import java.util.concurrent.Executor
@@ -27,15 +26,10 @@ class BiometricAuthRepositoryImpl @Inject constructor(
 
         val authenticators = BiometricManager.Authenticators.BIOMETRIC_STRONG
 
-        return when (biometricManager.canAuthenticate(authenticators)) {
-            BiometricManager.BIOMETRIC_SUCCESS -> AVAILABLE
-            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> NOT_SUPPORTED
-            BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> NOT_SUPPORTED
-            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> UNAVAILABLE
-            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> UNAVAILABLE
-            BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> UNAVAILABLE
-            BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> UNAVAILABLE
-            else -> UNAVAILABLE
+        return if (biometricManager.canAuthenticate(authenticators) == BiometricManager.BIOMETRIC_SUCCESS) {
+            AVAILABLE
+        } else {
+            NOT_SUPPORTED
         }
     }
 
