@@ -87,18 +87,10 @@ internal fun BiometricScreen(
 
         is BiometricUiState.AvailabilityChecked -> {
             val availability = (uiState as BiometricUiState.AvailabilityChecked).availability
-            when (availability) {
-                BiometricAuthAvailability.AVAILABLE -> viewModel.startAuthentication(activity)
-
-                BiometricAuthAvailability.NOT_SUPPORTED -> BiometricNotSupported(goToTopHeadlines)
-
-                BiometricAuthAvailability.UNAVAILABLE -> {
-                    ErrorScreen(
-                        message = activity.getString(R.string.biometric_not_available),
-                        onButtonClick = { activity.startActivity(Intent(ACTION_SECURITY_SETTINGS)) },
-                        buttonLabel = activity.getString(R.string.open_security_settings),
-                    )
-                }
+            if (availability == BiometricAuthAvailability.AVAILABLE) {
+                viewModel.startAuthentication(activity)
+            } else {
+                BiometricNotSupported(goToTopHeadlines)
             }
         }
 
