@@ -30,6 +30,7 @@ junit4 = "4.13.2"
 androidxJunit = "1.2.1"
 ktlint = "12.1.1"
 detekt = "1.23.6"
+turbine = "1.0.0"
 
 [libraries]
 # Androidx dependencies
@@ -79,6 +80,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 mockk-test = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android-test = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+turbine-test = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
