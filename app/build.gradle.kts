@@ -109,8 +109,10 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit4)
     testImplementation(libs.mockk.test)
+    testImplementation(libs.turbine.test)
 
     // Project dependencies
     implementation(project(":data"))
     implementation(project(":domain"))
+    testImplementation(kotlin("test"))
 }

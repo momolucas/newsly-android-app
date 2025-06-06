@@ -38,6 +38,9 @@ jobs:
             -   name: 🔍️ Run Ktlint
                 run: ./gradlew ktlintCheck --stacktrace
 
+            -   name: 🔬 Run Unit Tests
+                run: ./gradlew test --stacktrace
+
     build:
         name: 🚧 Build Project
         runs-on: ubuntu-latest
