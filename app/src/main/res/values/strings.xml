@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Newsly</string>
+    <string name="back">Back</string>
+    <string name="read_more">Read more</string>
+    <string name="error_icon">Error Icon</string>
+    <string name="error_message_top_headlines_screen">Something went wrong. Please try again.</string>
+    <string name="error_message_read_article_screen">Unable to load the file. Please try again later.</string>
+    <string name="back_to_headlines">Back to headlines</string>
+    <string name="try_again">Try Again</string>
+    <string name="authentication_failed_please_try_again">Authentication failed. Please try again.</string>
+    <string name="authentication_locked">Too many failed attempts. Please wait a few moments or unlock your device using your PIN, pattern, or password.</string>
+    <string name="biometric_not_available">Biometric sensor is not available right now. Try again in a few moments.</string>
+    <string name="open_security_settings">Open Security Settings</string>
+    <string name="unlock">Unlock</string>
+    <string name="biometric_sensor_not_detected">Biometric sensor not detected on this device. Redirecting to Top Headlines…</string>
 </resources>
